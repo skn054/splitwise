@@ -1,15 +1,36 @@
 package com.example.splitwise.demo.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Getter
+@Setter
 @Entity
 public class User {
 
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long userId;
     private String name;
-    private int phoneNumber;
+    @Column(unique = true, nullable = false)
+    private String phoneNumber;
+    private String hashedPassword;
+    @ManyToMany
+    private List<Group> groups;
+    @ManyToMany
+    private List<Expense> expenses;
+    @OneToMany(mappedBy = "user")
+    private List<UserExpense> userExpenses;
     
 
 }
