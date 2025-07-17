@@ -1,27 +1,35 @@
 package com.example.splitwise.demo.models;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@Table(name ="expenses")
 public class Expense {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String desc;
+    private long id;
+    private String description;
 
     @ManyToOne
     @JoinColumn(name="userId")
@@ -32,8 +40,15 @@ public class Expense {
 
     @OneToMany(mappedBy = "expense")
     private List<UserExpense> userExpenses;
-    private double amount;
+
+     @Column(precision = 10, scale = 2)
+    private BigDecimal totalAmount;
+
+     @Enumerated(EnumType.STRING)
     private SplitBy splitBy;
+
+     @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
     
 
 

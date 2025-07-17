@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -25,10 +27,8 @@ public class User {
     @Column(unique = true, nullable = false)
     private String phoneNumber;
     private String hashedPassword;
-    @ManyToMany
+    @ManyToMany(mappedBy = "members")
     private List<Group> groups;
-    @OneToMany
-    private List<Expense> expenses;
     @OneToMany(mappedBy = "user")
     private List<UserExpense> userExpenses;
     
