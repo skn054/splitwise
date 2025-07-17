@@ -27,7 +27,7 @@ public class User {
     private String hashedPassword;
     @ManyToMany
     private List<Group> groups;
-    @ManyToMany
+    @OneToMany
     private List<Expense> expenses;
     @OneToMany(mappedBy = "user")
     private List<UserExpense> userExpenses;
