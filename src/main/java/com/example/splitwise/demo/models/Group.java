@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -17,13 +18,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "groups")
+@Table(name = "user_groups")
 public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+
+    @JoinTable(name="user_groups_members",
+            joinColumns = @JoinColumn(name="group_id"),// owning entity
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     @ManyToMany
     private List<User> members;
     @ManyToOne

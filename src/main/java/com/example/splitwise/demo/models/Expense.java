@@ -32,7 +32,7 @@ public class Expense {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name="userId")
+    @JoinColumn(name="user_id")
     private User createdBy;
     @ManyToOne
     @JoinColumn(name="group_id")
