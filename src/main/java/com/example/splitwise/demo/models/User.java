@@ -18,11 +18,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends BaseModel{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    
     private String name;
     @Column(unique = true, nullable = false)
     private String phoneNumber;

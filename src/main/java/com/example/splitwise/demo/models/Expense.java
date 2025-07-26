@@ -24,11 +24,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name ="expenses")
-public class Expense {
+public class Expense extends BaseModel{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+   
     private String description;
 
     @ManyToOne
@@ -47,8 +45,7 @@ public class Expense {
      @Enumerated(EnumType.STRING)
     private SplitBy splitBy;
 
-     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    
     
 
 

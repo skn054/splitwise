@@ -17,12 +17,10 @@ import lombok.Setter;
 @Getter
 @Entity
 @Table(name = "user_expenses")
-public class UserExpense {
+public class UserExpense extends BaseModel{
 
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    private long id;
+    
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;

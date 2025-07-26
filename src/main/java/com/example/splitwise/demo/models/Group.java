@@ -2,6 +2,8 @@ package com.example.splitwise.demo.models;
 
 import java.util.List;
 
+
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,11 +21,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "user_groups")
-public class Group {
+public class Group extends BaseModel{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    
     private String name;
 
     @JoinTable(name="user_groups_members",
